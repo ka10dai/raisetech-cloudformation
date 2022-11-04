@@ -16,7 +16,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: raisetech
+          Value: !Sub ${AWS::StackName}
 
 #=============================================
 # subnet
@@ -30,7 +30,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: raisetech-public-subnet-1a
+          Value: !Join ["-", [!Ref AWS::StackName, public, subnet, 1a]]
 
   PublicSubnet1c:
     Type: AWS::EC2::Subnet
@@ -41,7 +41,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: raisetech-public-subnet-1c
+          Value: !Join ["-", [!Ref AWS::StackName, public, subnet, 1c]]
 
   PrivateSubnet1a:
     Type: AWS::EC2::Subnet
@@ -52,7 +52,8 @@ Resources:
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
-          Value: raisetech-private-subnet-1a
+          # Value: raisetech-private-subnet-1a
+          Value: !Join ["-", [!Ref AWS::StackName, private, subnet, 1a]]
 
   PrivateSubnet1c:
     Type: AWS::EC2::Subnet
@@ -63,7 +64,7 @@ Resources:
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
-          Value: raisetech-private-subnet-1c
+          Value: !Join ["-", [!Ref AWS::StackName, private, subnet, 1c]]
 
 #=============================================
 # InternetGateway
@@ -73,7 +74,8 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: raisetech-igw
+          # Value: raisetech-igw
+          Value: !Sub ${AWS::StackName}-igw
 
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -90,7 +92,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: raisetech-public-rt
+          Value: !Sub ${AWS::StackName}-public-rt
 
   PublicRoute:
     Type: AWS::EC2::Route

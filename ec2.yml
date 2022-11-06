@@ -88,10 +88,10 @@ Outputs:
     Description: EC2WebServer1a
     Value: !Ref EC2WebServer1a
     Export:
-      Name: !Sub ${AWS::StackName}-EC2WebServer1a
+      Name: !Sub ${VPCStac}-EC2WebServer1a
 
   # EC2WebServer1c:
   #   Description: EC2WebServer1c
   #   Value: !Ref EC2WebServer1c
   #   Export:
-  #     Name: !Sub ${AWS::StackName}-EC2WebServer1c
+  #     Name: !Sub ${VPCStack}-EC2WebServer1c

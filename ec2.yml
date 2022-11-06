@@ -88,7 +88,7 @@ Outputs:
     Description: EC2WebServer1a
     Value: !Ref EC2WebServer1a
     Export:
-      Name: !Sub ${VPCStac}-EC2WebServer1a
+      Name: !Sub ${VPCStack}-EC2WebServer1a
 
   # EC2WebServer1c:
   #   Description: EC2WebServer1c

@@ -4,11 +4,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: RaiseTech SecurityGroup
 
-Parameters:
-  VPCStack:
-    Type: String
-    Default: RaiseTech
-
 Resources:
 #=============================================
 # EC2
@@ -18,7 +13,7 @@ Resources:
     Properties:
       GroupDescription: RaiseTech Webserver SSH
       VpcId:
-        Fn::ImportValue: !Sub ${VPCStack}-VPC
+        Fn::ImportValue: !Sub ${AWS::StackName}-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -27,16 +22,14 @@ Resources:
           Description: Webserver ssh
       Tags:
         - Key: Name
-          # Value: RaiseTech-cfn-sg-ec2-ssh
           Value: !Join ["-", [!Ref VPCStack, sg, ec2, ssh]]
-          # Name: !Join ["-", [!Ref Project, !Ref Env, CiderBlock]]
 
   EC2SecurityGroupFromELB:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Webserver from ELB
       VpcId:
-        Fn::ImportValue: !Sub ${VPCStack}-VPC
+        Fn::ImportValue: !Sub ${AWS::StackName}-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3000
@@ -45,7 +38,6 @@ Resources:
           Description: From ELB
       Tags:
         - Key: Name
-          # Value: RaiseTech-sg-ec2-from-elb
           Value: !Join ["-", [!Ref VPCStack, sg, ec2, from, elb]]
 
 #=============================================
@@ -56,7 +48,7 @@ Resources:
     Properties:
       GroupDescription: RaiseTech RDS
       VpcId:
-        Fn::ImportValue: !Sub ${VPCStack}-VPC
+        Fn::ImportValue: !Sub ${AWS::StackName}-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
@@ -65,7 +57,6 @@ Resources:
           Description: RDS
       Tags:
         - Key: Name
-          # Value: RaiseTech-cfn-sg-rds
           Value: !Join ["-", [!Ref VPCStack, sg, rds]]
 
 #=============================================
@@ -76,7 +67,7 @@ Resources:
     Properties:
       GroupDescription: RaiseTech ELB
       VpcId:
-        Fn::ImportValue: !Sub ${VPCStack}-VPC
+        Fn::ImportValue: !Sub ${AWS::StackName}-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -85,7 +76,6 @@ Resources:
           Description: Application load balancer
       Tags:
         - Key: Name
-          # Value: RaiseTech-cfn-sg-elb
           Value: !Join ["-", [!Ref VPCStack, sg, elb]]
 
 #=============================================

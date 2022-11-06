@@ -91,22 +91,22 @@ Outputs:
     Description: EC2SecurityGroupSSH
     Value: !Ref EC2SecurityGroupSSH
     Export:
-      Name: !Sub ${VPCStack}-EC2SecurityGroupSSH
+      Name: !Join ["-", [!Ref VPCStack, sg, EC2SecurityGroupSSH]]
 
   EC2SecurityGroupFromELB:
     Description: EC2SecurityGroupFromELB
     Value: !Ref EC2SecurityGroupFromELB
     Export:
-      Name: !Sub ${VPCStack}-EC2SecurityGroupFromELB
+      Name: !Join ["-", [!Ref VPCStack, sg, EC2SecurityGroupFromELB]]
 
   SecurityGroupRDS:
     Description: SecurityGroupRDS
     Value: !Ref SecurityGroupRDS
     Export:
-      Name: !Sub ${VPCStack}-SecurityGroupRDS
+      Name: !Join ["-", [!Ref VPCStack, sg, SecurityGroupRDS]]
 
   SecurityGroupELB:
     Description: SecurityGroupELB
     Value: !Ref  SecurityGroupELB
     Export:
-      Name: !Sub ${VPCStack}-SecurityGroupELB
+      Name: !Join ["-", [!Ref VPCStack, sg, SecurityGroupELB]]

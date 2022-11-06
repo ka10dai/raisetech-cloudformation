@@ -13,7 +13,7 @@ Resources:
 #=============================================
 # ElasticIP
 #=============================================
-  ElasticIP:
+  ElasticIP1a:
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
@@ -21,12 +21,26 @@ Resources:
       - Key: Name
         Value: !Join ["-", [!Ref AWS::StackName, cfn, ec2, 1a]]
 
+  # ElasticIP1c:
+  #   Type: AWS::EC2::EIP
+  #   Properties:
+  #     Domain: vpc
+  #     Tags:
+  #     - Key: Name
+  #       Value: !Join ["-", [!Ref AWS::StackName, cfn, ec2, 1c]]
+
 #=============================================
 # Outputs
 #=============================================
 Outputs:
-  ElasticIP :
-    Description: RaiseTech-cfn-ElasticIP
-    Value: !GetAtt ElasticIP.AllocationId
+  ElasticIP1a :
+    Description: RaiseTech-cfn-ElasticIP-1a
+    Value: !GetAtt ElasticIP1a.AllocationId
     Export:
       Name: !Join ["-", [!Ref VPCStack, eip, ec2, 1a]]
+
+  # ElasticIP1c :
+  #   Description: RaiseTech-cfn-ElasticIP-1c
+  #   Value: !GetAtt ElasticIP1c.AllocationId
+  #   Export:
+  #     Name: !Join ["-", [!Ref VPCStack, eip, ec2, 1c]]

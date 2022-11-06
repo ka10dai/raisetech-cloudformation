@@ -78,7 +78,6 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          # Value: !Sub ${AWS::StackName}-cfn-igw
           Value: !Join ["-", [!Ref AWS::StackName, cfn, igw]]
 
   AttachGateway:
@@ -96,7 +95,6 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          # Value: !Sub ${AWS::StackName}-public-rt
           Value: !Join ["-", [!Ref AWS::StackName, cfn, public, rt]]
 
   PublicRoute:

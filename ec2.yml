@@ -64,14 +64,21 @@ Resources:
         - Fn::ImportValue: !Join ["-", [!Ref VPCStack, cfn, IAMRole, ec2]]
 
 #=============================================
-# ElasticIP
+# ElasticIP Association
 #=============================================
-  EIPAssociation:
+  EIP1aAssociation:
     Type: AWS::EC2::EIPAssociation
     Properties:
       AllocationId:
         Fn::ImportValue: !Join ["-", [!Ref VPCStack, eip, ec2, 1a]]
       InstanceId: !Ref EC2WebServer1a
+
+  # EIP1cAssociation:
+  #   Type: AWS::EC2::EIPAssociation
+  #   Properties:
+  #     AllocationId:
+  #       Fn::ImportValue: !Join ["-", [!Ref VPCStack, eip, ec2, 1c]]
+  #     InstanceId: !Ref EC2WebServer1c
 
 #=============================================
 # Outputs
